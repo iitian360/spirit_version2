@@ -1,0 +1,189 @@
+<!-- header -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/css/all.css">
+    <!-- navbar -->
+</head>
+
+<body>
+
+    <nav class=" navbar navbar-dark navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><i class="fa-solid fa-screwdriver-wrench"></i> Admin</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a href="/admin/admin_home/events" class="nav-link active">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin/admin_home" class="nav-link active">Registrations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#ca" class="nav-link active">Campus Ambassador</a>
+                    </li>
+                  
+                    <li class="nav-item">
+                        <a href="/admin/logout" class="btn btn-sm btn-danger float-end">log out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- drop your code here 👇👇👇👇-->
+
+
+    <div class="container-fluid">
+        <div class="row data-box">
+            <div class="data-table table-responsive pp  col-sm-12 mt-4">
+                <h3 class="head-text text-center alert alert-sm alert-success">Registered client</h3>
+                <table class="table table-bordered border-dark table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th class="_head" scope="col">#</th>
+                            <th class="" scope="col" style="background:#3e4e5b; color:white;">Name</th>
+                            <th class="" scope="col" style="background:#795548; color:white;">Email</th>
+                            <th class="" scope="col" style="background:rgb(33, 190, 252); color:white;">Phone</th>
+                            <th class="" scope="col" style="background:slategrey; color:white;">Whatsapp number</th>
+                            <th class="" scope="col" style="background:teal; color:white;">College name</th>
+                            <th class="" scope="col" style="background:brown; color:white;">year</th>
+                            <th class="" scope="col" style="background:#3e4e5b; color:white;">City</th>
+                            <th class="" scope="col" style="background:white; color:black;">Gender</th>
+                            <th class="" scope="col" style="background: green; color:white;">Payment status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="table-group-divider">
+                        <% var i=1 %>
+                            <% data.forEach((item)=>{ %>
+
+                                <tr>
+                                    <th scope="row">
+                                        <%= i++ %>
+                                    </th>
+                                    <td class="" style="color: white; background:#3D4D5A; font-weight:600">
+                                        <%= item.name %> <%= item.lname %>
+                                    </td>
+                                    <td style=" font-weight:600">
+                                        <%= item.email %>
+                                    </td>
+                                    <td>
+                                        <%=item.phone %>
+                                    </td>
+                                    <td style="color: black; font-weight:800">
+                                        <%=item.whatsapp %>
+                                    </td>
+                                    <td style=" font-weight:600">
+                                        <%=item.college %>
+                                    </td>
+                                    <td>
+                                        <%=item.year %>
+                                    </td>
+                                    <td>
+                                        <%=item.city %>
+                                    </td>
+                                    <td>
+                                        <%=item.gender %>
+                                    </td>
+                                    <td style="color: green;font-weight:600">
+                                        <%=item.payment_status %>
+                                    </td>
+
+                                </tr>
+                                <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header" id="ca">
+                <h3 class="text-center alert alert-sm alert-light" role="alert">
+                    Campus Ambassador
+                  </h3>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Whatsapp number</th>
+                        <th scope="col">College</th>
+                        <th scope="col">SpiritID</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">No. of Referrals</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <% var i=1 %>
+                    <% ca_data.forEach((item)=>{ %>
+                        <% var l=0 %>
+                        <% data.forEach((r)=>{ %>
+                          <%  if(item.SpiritID==r.referral){ %>
+                                <%- l++ %>
+                           <% } %>
+                        <% }) %>
+                      <tr>
+                        <th scope="row"><%- i++ %></th>
+                        <td><%- item.name %> <%- item.lname %></td>
+                        <td><%- item.email %></td>
+                        <td><%- item.whatsapp %></td>
+                        <td><%- item.college %></td>
+                        <td><%- item.SpiritID %></td>
+                        <td><%- item.gender %></td>
+                        <td><%- item.address %></td>
+                        <td><%- l %></td>
+                      </tr>
+                    <% }) %>
+                      
+                    </tbody>
+                  </table>
+            </div>
+          </div>
+    </div>
+
+
+    <style>
+        .data-table {
+
+            
+            margin: 1px;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+        }
+        .data-table th,td{
+            font-size: 14px;
+        }
+
+        .pp{
+            height: 90vh;
+            overflow-y: scroll;
+        }
+    </style> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+
+    <script src="/js/all.js"></script>
+</body>
+
+</html>
