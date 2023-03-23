@@ -8,7 +8,7 @@ import crypto from 'crypto';
 
 class creatCA{
     static CA_page=(req,res)=>{
-        res.render('ca/campusA' ,{'title':'CA'});
+        res.render('error/comming_soon' ,{'title':'CA'});
     }
     static CA_Details=async(req,res)=>{
         try{
